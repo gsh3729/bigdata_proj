@@ -1,0 +1,16 @@
+image: python:3.8
+
+test:
+  stage: test
+  before_script:
+    - pip install -e .[fuzzy]
+  script:
+    - python -m datamart_geo data/
+    - python tests.py
+
+python-style:
+  stage: test
+  before_script:
+    - pip install flake8
+  script:
+    - flake8 --ignore=E501,W503
